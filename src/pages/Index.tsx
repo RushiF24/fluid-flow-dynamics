@@ -1,13 +1,24 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { SimulationProvider } from '@/simulation/SimulationContext';
+import { WindowAPIBridge } from '@/simulation/useWindowAPI';
+import ControlPanel from '@/components/ControlPanel';
+import Scene from '@/components/simulation/Scene';
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <SimulationProvider>
+      <WindowAPIBridge />
+      <div className="flex h-screen w-screen overflow-hidden bg-background">
+        {/* Control Panel — left sidebar */}
+        <div className="w-80 min-w-[280px] flex-shrink-0 border-r border-border">
+          <ControlPanel />
+        </div>
+
+        {/* 3D Scene — fills remaining space */}
+        <div className="flex-1">
+          <Scene />
+        </div>
       </div>
-    </div>
+    </SimulationProvider>
   );
 };
 
